@@ -12,16 +12,18 @@ namespace Midterms.Controllers
     {
         static List<Product> collections = new List<Product>();
 
-        public List<Product> Get()
+        public HttpResponseMessage Get()
         {
-        return collections;
+            var response = Request.CreateResponse<List<Product>>(HttpStatusCode.OK, collections);
+            return response;
         }
-        public Product Get(int index)
+        public HttpResponseMessage Get(int index)
         {
-            return collections[index];
+            var response = Request.CreateResponse<Product>(HttpStatusCode.OK, collections[index]);
+            return response;
         }
 
-        public Product Post(string id, int code, string name, string description, string categoryid, string color, string size, double price)
+        public HttpResponseMessage Post(string id, int code, string name, string description, string categoryid, string color, string size, double price)
         {
             Product a = new Product();
             a.ID = id;
@@ -33,7 +35,8 @@ namespace Midterms.Controllers
             a.Size = size;
             a.Price = price;
             collections.Add(a);
-            return a;
+            var response = Request.CreateResponse<Product>(HttpStatusCode.OK, a);
+            return response;
         }
 
         public Product Put (int index, string id, int code, string name, string description, string categoryid, string color, string size, double price)
@@ -91,6 +94,18 @@ namespace Midterms.Controllers
             c.Size = "Large";
             c.Price = 450;
             collections.Add(c);
+            Product d = new Product();
+            d.ID = "FourthProduct";
+            d.Code = 4;
+            d.Name = "FourthHoodie";
+            d.Description = "Hoodie";
+            d.CategoryID = "Hoodies and Sweatshirts";
+            d.Color = "White";
+            d.Size = "Large";
+            d.Price = 550;
+            collections.Add(d);
+
+
             }
         }
     }

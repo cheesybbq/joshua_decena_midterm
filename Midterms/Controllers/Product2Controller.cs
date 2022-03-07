@@ -48,6 +48,7 @@ namespace Midterms.Controllers
             aa.Size = size;
             aa.Price = price;
             collections.Add(aa);
+            var response = Request.CreateResponse<Products2>(HttpStatusCode.Accepted, aa);
             return aa;
         }
 
@@ -57,7 +58,7 @@ namespace Midterms.Controllers
             return "Deleted";
         }
 
-        public Product2Controller()
+        public Products2Controller()
         {
             if (collections.Count < 1)
             {
